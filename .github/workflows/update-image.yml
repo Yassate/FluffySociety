@@ -1,0 +1,33 @@
+name: Update Daily Image
+
+on:
+  schedule:
+    - cron: '0 0 * * *'  # Every day at midnight UTC
+
+jobs:
+  update-image:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Hardcoded folder name
+        run: echo "HIDDEN_FOLDER=A1b2C3d4E5F6G7H8I9J0K1L2" >> $GITHUB_ENV
+
+      - name: Get today's date in DD-MM-YYYY format
+        run: echo "TODAY=$(date +%d-%m-%Y)" >> $GITHUB_ENV
+
+      - name: Replace the image
+        run: |
+          if [ -f "$HIDDEN_FOLDER/$TODAY.png" ]; then
+            cp "$HIDDEN_FOLDER/$TODAY.png" current.png
+          else
+            echo "No image for today, keeping the previous one."
+          fi
+
+      - name: Commit changes (if a new image is added)
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+          git diff --quiet || (git commit -am "Updated image for $TODAY" && git push)
