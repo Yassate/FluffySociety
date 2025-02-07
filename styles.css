@@ -9,16 +9,22 @@ body {
     font-family: 'Arial', sans-serif;
     background-color: #f8f8f8;
     color: #333;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
 }
 
+/* HEADER */
 header {
     background-color: #ffcc00;
     text-align: center;
-    padding: 30px 0;
+    padding: 30px 20px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    width: 100%;
 }
 
 header h1 {
@@ -34,20 +40,24 @@ header h2 {
 }
 
 header img {
-    max-width: 200px;  /* Adjust size as needed */
+    max-width: 150px;  /* Reduced for mobile */
     border-radius: 50%;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
 }
 
+/* MAIN CONTENT */
 main {
-    padding: 20px;
+    flex-grow: 1;
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 20px;
 }
 
 .image-container {
-    max-width: 80%;
+    width: 90%; /* Allows responsiveness */
+    max-width: 800px;
     text-align: center;
 }
 
@@ -59,13 +69,49 @@ main {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+/* FOOTER */
 footer {
+    width: 100%;
     text-align: center;
     padding: 20px;
     background-color: #222;
     color: #fff;
+    font-size: 1em;
 }
 
-footer p {
-    font-size: 1em;
+/* 🌍 RESPONSIVE DESIGN */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2.5em;
+    }
+    
+    header h2 {
+        font-size: 1.2em;
+    }
+
+    header img {
+        max-width: 120px;
+    }
+
+    .image-container {
+        width: 95%;
+    }
+}
+
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 2em;
+    }
+
+    header h2 {
+        font-size: 1em;
+    }
+
+    header img {
+        max-width: 100px;
+    }
+
+    .daily-image {
+        border-radius: 5px;
+    }
 }
